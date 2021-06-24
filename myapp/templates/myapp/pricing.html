@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block page_title %}
+Purple Buzz-Pricing
+{% endblock %}
+{% block content %}
+{% include 'myapp/include/nav.html' %}
+
+    <!-- Start pricing -->
+    <div class="container-lg py-5">
+        <div class="col-md-12 m-auto text-center py-5">
+            <h1 class="pricing-header h2 semi-bold-600">Pricing</h1>
+            <p class="pricing-footer">
+                Consectetur adipiscing elit, sed do eiusmod tempor incididunt ut facilisis.
+            </p>
+        </div>
+
+
+        <div class="row px-lg-3">
+            {% for price in pricing %}
+            <div class="col-md-4 pt-sm-0 pt-3 px-xl-3">
+                <div class="pricing-table card {% if price.is_main %}bg-secondary{% endif %} h-100 card-rounded shadow-sm border-0 py-5">
+                    <div class="pricing-table-body card-body text-center {% if price.is_main %}text-white{% endif %} align-self-center p-md-0">
+                        <i class="pricing-table-icon display-3 bx bx-package {% if price.is_main %}text-white{% endif %} py-3"></i>
+                        <h2 class="pricing-table-heading h5 semi-bold-600">{{price.plan}}</h2>
+                        <p>{{price.plan_price}}</p>
+                        <ul class="pricing-table-list text-start text-dark px-4 list-unstyled light-300">
+                            <li class="{% if price.is_main %}text-white{% endif %}"><i class="bx bxs-circle me-2"></i>{{price.plan_user}}</li>
+                            <li class="{% if price.is_main %}text-white{% endif %}"><i class="bx bxs-circle me-2"></i>{{price.plan_space}}</li>
+                            <li class="{% if price.is_main %}text-white{% endif %}"><i class="bx bxs-circle me-2"></i>{{price.plan_source}}</li>
+                            <li class="{% if price.is_main %}text-white{% endif %}"><i class="bx bxs-circle me-2"></i>{{price.plan_support}}</li>
+                            {% if price.customization %}
+                            <li class="{% if price.is_main %}text-white{% endif %}"><i class="bx bxs-circle me-2"></i>{{price.customization}}</li>
+                            {% endif %}
+                        </ul>
+                        <div class="pricing-table-footer pt-5 pb-2">
+                            <a href="#" class="btn rounded-pill px-4 {% if price.is_main %}btn-outline-light{% else %}btn-outline-primary{% endif %} light-300">Get Now</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+
+        </div>
+    </div>
+    <!-- End Content -->
+{% include 'myapp/include/footer.html' %}
+{% endblock %}
