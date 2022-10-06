@@ -20,7 +20,9 @@ def about(request):
             "members": TeamMember.objects.all(),
             "is_added" : True
         })
-    
+        return render(request,"myapp/about.html",{
+        "members" : TeamMember.objects.all()
+    })
 
 def pricing(request):
     return render(request,"myapp/pricing.html",{
